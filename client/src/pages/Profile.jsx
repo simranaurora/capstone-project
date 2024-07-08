@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Profile = () => {
+const Profile = ({ setProfilePhoto }) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -11,22 +11,45 @@ const Profile = () => {
         profilePhoto: null,
     });
 
-   
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handlePhotoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFormData({
+                ...formData,
+                profilePhoto: file,
+            });
+            setProfilePhoto(URL.createObjectURL(file));
+        }
+    };
 
     return (
         <div style={styles.container}>
             <h2>Profile</h2>
-            <form  style={styles.form}>
+            <form style={styles.form}>
                 <div style={styles.formGroup}>
                     <label htmlFor="profilePhoto">Profile Photo:</label>
                     <input
                         type="file"
                         id="profilePhoto"
                         name="profilePhoto"
-                        //onChange={handleChange}
+                        onChange={handlePhotoChange}
                         style={styles.input}
                     />
-                    
+                    {formData.profilePhoto && (
+                        <img
+                            src={URL.createObjectURL(formData.profilePhoto)}
+                            alt="Profile"
+                            style={styles.profileImage}
+                        />
+                    )}
                 </div>
                 <div style={styles.formGroup}>
                     <label htmlFor="username">Username:</label>
@@ -35,7 +58,7 @@ const Profile = () => {
                         id="username"
                         name="username"
                         value={formData.username}
-                      //  onChange={handleChange}
+                        onChange={handleChange}
                         style={styles.input}
                     />
                 </div>
@@ -46,7 +69,7 @@ const Profile = () => {
                         id="email"
                         name="email"
                         value={formData.email}
-                        //onChange={handleChange}
+                        onChange={handleChange}
                         style={styles.input}
                     />
                 </div>
@@ -57,7 +80,7 @@ const Profile = () => {
                         id="password"
                         name="password"
                         value={formData.password}
-                       // onChange={handleChange}
+                        onChange={handleChange}
                         style={styles.input}
                     />
                 </div>
@@ -68,7 +91,7 @@ const Profile = () => {
                         id="address"
                         name="address"
                         value={formData.address}
-                       // onChange={handleChange}
+                        onChange={handleChange}
                         style={styles.input}
                     />
                 </div>
@@ -79,7 +102,7 @@ const Profile = () => {
                         id="phoneNumber"
                         name="phoneNumber"
                         value={formData.phoneNumber}
-                      //  onChange={handleChange}
+                        onChange={handleChange}
                         style={styles.input}
                     />
                 </div>
@@ -89,7 +112,7 @@ const Profile = () => {
                         id="bio"
                         name="bio"
                         value={formData.bio}
-                       // onChange={handleChange}
+                        onChange={handleChange}
                         style={styles.textarea}
                     />
                 </div>

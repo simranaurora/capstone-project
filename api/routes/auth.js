@@ -5,16 +5,16 @@ import errorHandler from '../utils/error.js';
 
 const router = express.Router();
 
-router.post('/signup', async (req,res, next) => {
+router.post('/signup', async (req, res, next) => {
     const { username, email, password } = req.body;
     const user = new User({ username, email, password });
     try {
-        await user.save();
-        res.status(200).json("User has been created");
+      await user.save();
+      res.status(200).json({ message: "User has been created" });
     } catch (err) {
-        next(err)
+      next(err);
     }
-});
+  });
 
 router.post('/signin', async (req, res, next) => {
     const { username, password } = req.body;
