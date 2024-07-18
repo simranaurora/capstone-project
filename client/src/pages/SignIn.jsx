@@ -30,6 +30,7 @@ const SignIn = ({ setIsLoggedIn }) => {
           username: formData.username,
           password: formData.password,
         }),
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -78,11 +79,16 @@ const SignIn = ({ setIsLoggedIn }) => {
             {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
-        <div className='flex justify-center gap-2 mt-4'>
-          <p>Don't have an account?</p>
-          <Link to='/signup'>
-            <span className='text-cyan-700 font-bold hover:underline'>Sign up</span>
+        <div className='flex flex-col items-center mt-4 gap-2'>
+          <Link to='/forgot-password'>
+            <span className='text-cyan-700 font-bold hover:underline'>Forgot Password?</span>
           </Link>
+          <div className='flex gap-2'>
+            <p>Don't have an account?</p>
+            <Link to='/signup'>
+              <span className='text-cyan-700 font-bold hover:underline'>Sign up</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

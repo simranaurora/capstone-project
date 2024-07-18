@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
+
 import userRoute from './routes/user.js';
 import authRoute from './routes/auth.js';
 import contactRoute from './routes/contact.js';
@@ -19,7 +21,9 @@ app.use(cors({
   origin: 'http://localhost:5173', // Allow your frontend's origin
   credentials: true // If you need to send cookies or auth headers
 }));
+
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use('/api/user', userRoute);

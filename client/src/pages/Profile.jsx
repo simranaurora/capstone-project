@@ -34,6 +34,7 @@ const Profile = ({ setProfilePhoto }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ username: formData.username }),
+                credentials: 'include',
             });
             const data = await response.json();
             if (data.success) {

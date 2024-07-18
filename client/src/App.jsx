@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Contact from './pages/Contact';
 import AboutUs from './pages/AboutUs';
+import ForgotPassword from './pages/ForgotPassword';
 
 const App = () => {
   const [profilePhoto, setProfilePhoto] = useState(null);
@@ -21,6 +22,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/signup" />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/signin" element={<SignIn setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/signin" />} />
             <Route path="/profile" element={isLoggedIn ? <Profile setProfilePhoto={setProfilePhoto} /> : <Navigate to="/signin" />} />

@@ -9,12 +9,12 @@ router.get('/test', (req, res) => {
 
 router.post('/update', async (req, res) => {
     const { username } = req.body;
+    const userId = req.cookies.userId;
     if (!username) {
         return res.status(400).json({ success: false, msg: 'Username is required' });
     }
 
     try {
-        const userId = req.user.id;
         const user = await User.findByIdAndUpdate(userId, { username }, { new: true });
         if (!user) {
             return res.status(404).json({ success: false, msg: 'User not found' });

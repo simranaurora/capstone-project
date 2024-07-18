@@ -26,6 +26,7 @@ router.post('/signin', async (req, res, next) => {
         if (user.password !== password) {
             return next(errorHandler(400, "Incorrect password"));
         }
+        res.cookie('userId', user._id, { httpOnly: true });
         res.status(200).json(user);
     } catch (err) {
         next(err);
