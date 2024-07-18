@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 import userRoute from './routes/user.js';
 import authRoute from './routes/auth.js';
@@ -13,6 +14,9 @@ dotenv.config();
 mongoose.connect(process.env.MONGO_DB)
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
+
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -29,6 +33,12 @@ app.use(cookieParser());
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api', contactRoute);
+
+app.use(express.static(path.join(__dirname, '/client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
