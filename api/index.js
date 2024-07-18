@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoute from './routes/user.js';
 import authRoute from './routes/auth.js';
+import contactRoute from './routes/contact.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 // Routes
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
+app.use('/api', contactRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

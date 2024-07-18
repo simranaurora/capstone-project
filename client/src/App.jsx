@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Contact from './pages/Contact';
+import AboutUs from './pages/AboutUs';
 
 const App = () => {
   const [profilePhoto, setProfilePhoto] = useState(null);
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/signin" />} />
             <Route path="/profile" element={isLoggedIn ? <Profile setProfilePhoto={setProfilePhoto} /> : <Navigate to="/signin" />} />
             <Route path="/contact" element={isLoggedIn ? <Contact /> : <Navigate to="/signin" />} />
+            <Route path="/about-us" element={isLoggedIn ? <AboutUs /> : <Navigate to="/signin" />} />
             {!isLoggedIn && <Route path="*" element={<Navigate to="/signin" />} />}
           </Routes>
         </div>

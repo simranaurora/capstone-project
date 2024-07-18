@@ -1,13 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const Profile = ({ setProfilePhoto }) => {
     const [formData, setFormData] = useState({
         username: '',
-        email: '',
-        password: '',
-        address: '',
-        phoneNumber: '',
-        bio: '',
         profilePhoto: null,
     });
 
@@ -30,10 +25,32 @@ const Profile = ({ setProfilePhoto }) => {
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:3000/api/user/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: formData.username }),
+            });
+            const data = await response.json();
+            if (data.success) {
+                alert('Username updated successfully');
+            } else {
+                alert('Failed to update username');
+            }
+        } catch (error) {
+            console.error('Error updating username:', error);
+            alert('Error updating username');
+        }
+    };
+
     return (
         <div style={styles.container}>
             <h2>Profile</h2>
-            <form style={styles.form}>
+            <form style={styles.form} onSubmit={handleSubmit}>
                 <div style={styles.formGroup}>
                     <label htmlFor="profilePhoto">Profile Photo:</label>
                     <input
@@ -60,60 +77,6 @@ const Profile = ({ setProfilePhoto }) => {
                         value={formData.username}
                         onChange={handleChange}
                         style={styles.input}
-                    />
-                </div>
-                <div style={styles.formGroup}>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        style={styles.input}
-                    />
-                </div>
-                <div style={styles.formGroup}>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        style={styles.input}
-                    />
-                </div>
-                <div style={styles.formGroup}>
-                    <label htmlFor="address">Address:</label>
-                    <input
-                        type="text"
-                        id="address"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                        style={styles.input}
-                    />
-                </div>
-                <div style={styles.formGroup}>
-                    <label htmlFor="phoneNumber">Phone Number:</label>
-                    <input
-                        type="text"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
-                        style={styles.input}
-                    />
-                </div>
-                <div style={styles.formGroup}>
-                    <label htmlFor="bio">Bio:</label>
-                    <textarea
-                        id="bio"
-                        name="bio"
-                        value={formData.bio}
-                        onChange={handleChange}
-                        style={styles.textarea}
                     />
                 </div>
                 <button type="submit" style={styles.button}>Submit</button>
@@ -144,14 +107,6 @@ const styles = {
         width: '100%',
         padding: '10px',
         fontSize: '16px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-    },
-    textarea: {
-        width: '100%',
-        padding: '10px',
-        fontSize: '16px',
-        height: '100px',
         borderRadius: '4px',
         border: '1px solid #ccc',
     },

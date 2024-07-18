@@ -32,12 +32,12 @@ const Header = ({ profilePhoto, setIsLoggedIn }) => {
           <Link to='/contact'>
             <li className='text-white hover:underline cursor-pointer font-semibold'>Contact Us</li>
           </Link>
-          {profilePhoto && (
-            <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
-          )}
           <button onClick={handleLogout} className='text-white hover:underline cursor-pointer font-semibold'>
             Logout
           </button>
+          {profilePhoto && (
+            <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
+          )}
         </ul>
       </div>
     </header>
