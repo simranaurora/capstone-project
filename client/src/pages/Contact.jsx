@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const ContactUs = () => {
+    const url = process.env.FRONTEND_URL || 'http://localhost:3000';
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -19,7 +20,7 @@ const ContactUs = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://eco-real-estate.onrender.com/api/contact', {
+            const response = await fetch(`${url}/api/contact`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

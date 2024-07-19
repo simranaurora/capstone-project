@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignIn = ({ setIsLoggedIn }) => {
+  const url = process.env.FRONTEND_URL || 'http://localhost:3000';
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -21,7 +22,7 @@ const SignIn = ({ setIsLoggedIn }) => {
     setError('');
 
     try {
-      const response = await fetch('https://eco-real-estate.onrender.com/api/auth/signin', {
+      const response = await fetch(`${url}/api/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
+  const url = process.env.FRONTEND_URL || 'http://localhost:3000';
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -23,7 +24,7 @@ const SignUp = () => {
     setSuccessMessage('');
 
     try {
-      const response = await fetch('https://eco-real-estate.onrender.com/api/auth/signup', { // Ensure correct URL
+      const response = await fetch(`${url}/api/auth/signup`, { // Ensure correct URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

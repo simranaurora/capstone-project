@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const Profile = ({ setProfilePhoto }) => {
+    const url = process.env.FRONTEND_URL || 'http://localhost:3000';
     const [formData, setFormData] = useState({
         username: '',
         profilePhoto: null,
@@ -28,7 +29,7 @@ const Profile = ({ setProfilePhoto }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://eco-real-estate.onrender.com/api/user/update', {
+            const response = await fetch(`${url}/api/user/update`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

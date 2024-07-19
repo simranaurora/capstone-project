@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ForgotPassword = () => {
+  const url = process.env.FRONTEND_URL || 'http://localhost:3000';
   const [username, setUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -16,7 +17,7 @@ const ForgotPassword = () => {
     setError('');
 
     try {
-      const response = await fetch('https://eco-real-estate.onrender.com/api/auth/forgot-password', {
+      const response = await fetch(`${url}/api/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch('https://eco-real-estate.onrender.com/api/auth/reset-password', {
+      const response = await fetch(`${url}/api/auth/reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
