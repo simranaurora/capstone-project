@@ -16,7 +16,7 @@ const ForgotPassword = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/forgot-password', {
+      const response = await fetch('https://eco-real-estate.onrender.com/api/auth/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/reset-password', {
+      const response = await fetch('https://eco-real-estate.onrender.com/api/auth/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ const SignUp = () => {
     setSuccessMessage('');
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/signup', { // Ensure correct URL
+      const response = await fetch('https://eco-real-estate.onrender.com/api/auth/signup', { // Ensure correct URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
