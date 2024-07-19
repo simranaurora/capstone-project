@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ForgotPassword = () => {
-  const url = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const url = import.meta.env.VITE_FRONTEND_URL || 'http://localhost:3000';
   const [username, setUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

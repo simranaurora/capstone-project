@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Profile = ({ setProfilePhoto }) => {
-    const url = process.env.FRONTEND_URL || 'http://localhost:3000';
+    const url = import.meta.env.VITE_FRONTEND_URL || 'http://localhost:3000';
     const [formData, setFormData] = useState({
         username: '',
         profilePhoto: null,

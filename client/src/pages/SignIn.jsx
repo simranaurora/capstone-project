@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignIn = ({ setIsLoggedIn }) => {
-  const url = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const url = import.meta.env.VITE_FRONTEND_URL || 'http://localhost:3000';
   const [formData, setFormData] = useState({
     username: '',
     password: '',
