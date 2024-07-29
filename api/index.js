@@ -22,7 +22,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://eco-real-estate.onrender.com' ||'http://localhost:5173', // Allow your frontend's origin
+  origin: 'https://eco-real-estate.onrender.com' || 'http://localhost:5173', // Allow your frontend's origin
   credentials: true // If you need to send cookies or auth headers
 }));
 
