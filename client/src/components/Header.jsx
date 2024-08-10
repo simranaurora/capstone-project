@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../icons/logoe.png';
 
-const Header = ({ profilePhoto, setIsLoggedIn }) => {
+const Header = ({ profilePhoto, setIsLoggedIn, isLoggedIn}) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -23,11 +23,16 @@ const Header = ({ profilePhoto, setIsLoggedIn }) => {
           <Link to='/'>
             <li className='text-white hover:underline cursor-pointer font-semibold'>Home</li>
           </Link>
-          <Link to='/signup'>
+          {
+            !isLoggedIn && <Link to='/signup'>
             <li className='text-white hover:underline cursor-pointer font-semibold'>Sign Up</li>
           </Link>
+          }
           <Link to='/profile'>
             <li className='text-white hover:underline cursor-pointer font-semibold'>Profile</li>
+          </Link>
+          <Link to='/mortgage-calculator'>
+            <li className='text-white hover:underline cursor-pointer font-semibold'>Mortgage Calculator</li>
           </Link>
           <Link to='/contact'>
             <li className='text-white hover:underline cursor-pointer font-semibold'>Contact Us</li>

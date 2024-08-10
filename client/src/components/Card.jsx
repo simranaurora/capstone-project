@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Card = ({ name, image, price, location }) => {
+const Card = ({ name, image, price, location, onClick }) => {
   return (
-    <div className="bg-white shadow-md rounded-md overflow-hidden">
+    <div
+      className="relative bg-white shadow-md rounded-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer"
+      onClick={onClick}
+    >
       <img src={image} alt={name} className="w-full h-48 object-cover" />
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{name}</h2>
